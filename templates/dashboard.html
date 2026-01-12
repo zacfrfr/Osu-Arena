@@ -2,29 +2,7 @@
 
 {% block body %}
 
-
-
-<header class="bg-gradient-to-r from-pink-600 via-pink-500 to-pink-400 text-black shadow-lg rounded-b-2xl px-8 py-4 flex items-center justify-between">
-    <div class="flex items-center gap-4">
-        <img src="{{ url_for('static', filename='race_to_4_digit_icon.jpg') }}" alt="Logo" class="w-12 h-12 rounded-full object-cover shadow-md" />
-        <div class="flex flex-col">
-            <span class="text-3xl font-extrabold tracking-wide">Osu!Arena</span>
-            <span class="text-sm text-black/70 font-medium -mt-1">Osu! League</span>
-        </div>
-    </div>
-    <div class="flex gap-2">
-        <a href="https://osu.ppy.sh/users/{{ username }}" target="_blank" rel="noopener noreferrer"
-           class="bg-black text-pink-400 border border-pink-300 hover:bg-pink-700 hover:text-black transition-all duration-200 px-4 py-2 rounded-lg text-sm font-semibold shadow-md">
-            Your osu! profile
-        </a>
-        <a href="https://www.youtube.com/@Race_to_4Digit" target="_blank" rel="noopener noreferrer"
-           class="bg-black text-pink-400 border border-pink-300 hover:bg-pink-700 hover:text-black transition-all duration-200 px-4 py-2 rounded-lg text-sm font-semibold shadow-md">
-            Watch on YouTube
-        </a>
-    </div>
-</header>
-
-<div class="bg-gradient-to-br from-black via-pink-900 to-pink-700 rounded-lg p-8 max-w-3xl mx-auto shadow-lg text-pink-100 mt-8">
+<div>
     <h1 class="text-3xl font-bold mb-4">
         Welcome, <span class="text-pink-300">{{ username }}</span>.
     </h1>
@@ -32,8 +10,20 @@
         Your initial <span class="font-mono bg-pink-800 px-2 rounded">{{ pp }}</span> pp for the current session is set.
     </p>
     <p class="mb-4 text-lg">
-        Your league is <span class="font-semibold text-pink-300">{{ league }}</span>.
+        Your league is 
+        <span class="font-semibold 
+            {% if league == 'Bronze' %} text-yellow-600
+            {% elif league == 'Silver' %} text-gray-300
+            {% elif league == 'Gold' %} text-yellow-400
+            {% elif league == 'Platinum' %} text-blue-400
+            {% elif league == 'Diamond' %} text-indigo-400
+            {% else %} text-pink-300
+            {% endif %}
+        ">
+            {{ league }}
+        </span>.
     </p>
+
     <p class="italic text-pink-200">{{ msg }}</p>
 </div>
 
